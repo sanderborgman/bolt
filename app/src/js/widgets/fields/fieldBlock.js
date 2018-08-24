@@ -177,11 +177,11 @@
          * @memberof Bolt.fields.block
          */
         _renumber: function () {
-            var re = new RegExp('^([^\\\[]+\\\[)([#|\\\d]+)(\\\].*)$', 'gi');
+            var re = /\[(\d+)\]/gi;
 
             this._ui.slot.find('div.block-group').each(function (index, group) {
                 $(group).find('[name]').each(function () {
-                    this.name = this.name.replace(re, '$1' + index + '$3');
+                    this.name = this.name.replace(re, '[' + index + ']');
                 });
 
                 if ($(group).is(':first-of-type')) {
